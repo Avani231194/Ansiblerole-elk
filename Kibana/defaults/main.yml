@@ -1,0 +1,8 @@
+---
+# defaults file for ansible-kibana
+
+kibana_port: 5601
+kibana_host: "0.0.0.0"
+elasticsearch_url: 
+kibana_index: .kibana
+
