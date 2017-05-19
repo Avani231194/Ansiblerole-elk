@@ -1,0 +1,11 @@
+---
+elasticsearch_node_master: true
+elasticsearch_node_data: true
+elasticsearch_log_dir: /var/log/elasticsearch
+elasticsearch_network_transport_tcp_port: 9300
+elasticsearch_network_http_port: 9200
+elasticsearch_discovery_zen_minimum_master_nodes: 2
+elasticsearch_discovery_zen_ping_unicast_hosts: "192.168.0.12, 192.168.0.49"
+elasticsearch_network_host: 0.0.0.0
+elasticsearch_node_name: ${HOSTNAME}
+elasticsearch_cluster_name: Production
