@@ -1,0 +1,27 @@
+---
+- name: Add logstash repository
+  apt_repository: repo='deb https://artifacts.elastic.co/packages/5.x/apt stable main' state=present
+
+- name: Ensure logstash is installed
+  apt: pkg={{item}} state=installed
+  with_items:
+    - openjdk-8-jre
+    - logstash
+
+#- name: Install logstash package
+#  apt: name=logstash state=present update_cache=yes force=yes
+
+- name: Ensure logstash config is in place
+  template:
+     src: logstash.conf.j2 
+     dest: /etc/logstash/conf.d/logstash.conf
+  notify:
+    - restart logstash
+
+- name: Starting logstash 
+  service: name=logstash state=started enabled=yes
+
+- name: To make service available after reboot
+  command: update-rc.d logstash defaults 96 9
+  notify:
+    -  restart logstash   
